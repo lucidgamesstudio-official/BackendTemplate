@@ -1,6 +1,7 @@
 -- Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 -- Modules
@@ -80,7 +81,11 @@ function PlayerDatasManager.HandlePlayer(player: Player)
 		Token = Token,
 	})
 
-	Replica:Set({ "Inventory" }, {})
+	if RunService:IsStudio() and true then
+		Replica:Set({ "Inventory" }, {})
+		Replica:Set({ "Money" }, 0)
+		Replica:Set({ "NPC_interact" }, {})
+	end
 
 	Replicas[player] = Replica
 
