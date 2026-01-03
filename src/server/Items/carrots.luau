@@ -6,9 +6,6 @@ local backend_template = require(ServerScriptService.Server.Backend.backend_temp
 local utility = require(ReplicatedStorage.Shared.utility)
 local module = {}
 
-local EVENT_FOLDER = utility.CreateFolder("RemoteEvents")
-local FUNCTION_FOLDER = utility.CreateFolder("RemoteFunctions")
-local BIND_EVENT_FOLDER = utility.CreateFolder("BindableEvents")
 local BIND_FUNCTION_FOLDER = utility.CreateFolder("BindableFunctions")
 
 local ITEM_ID = "1"
@@ -48,13 +45,10 @@ function module.New(carot: BasePart): Carrot
 			return
 		end
 		utility.CreateBindableFunction("AddItem", BIND_FUNCTION_FOLDER):Invoke(player, ITEM_ID, BASE_ITEM)
-		self:Destroy()
+		self.Model:Destroy()
+		self._touchedConn:Disconnect()
 		table.clear(self)
 	end)
-
-	function self.Destroy(self: Carrot)
-		self.Model:Destroy()
-	end
 
 	return self
 end
