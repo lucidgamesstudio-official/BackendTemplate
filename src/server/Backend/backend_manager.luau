@@ -15,7 +15,6 @@ local PlayerDatasManager = {}
 local Replicas: { [Player]: types.ReplicaServer<backend_template.PlayerDatas> } = {}
 
 local DataStore = profilestore.New("PlayerData", backend_template)
-
 local Profiles: { [Player]: typeof(DataStore:StartSessionAsync()) } = {}
 
 function PlayerDatasManager.Init()
