@@ -58,13 +58,13 @@ export type ReplicaClient = {
 	RequestData: () -> (),
 }
 
-export type ReplicaServer = {
+export type ReplicaServer<T> = {
 	Tags: { [any]: any },
-	Data: { [any]: any },
+	Data: { [any]: T },
 	Id: number,
 	Token: string,
-	Parent: ReplicaServer?,
-	Children: { [ReplicaServer]: boolean? },
+	Parent: ReplicaServer<T>?,
+	Children: { [ReplicaServer<T>]: boolean? },
 	BoundInstance: Instance?,
 	OnServerEvent: { Connect: (self: any, listener: (Player, ...any) -> ()) -> { Disconnect: (self: any) -> () } },
 	Maid: Maid,
@@ -78,7 +78,7 @@ export type ReplicaServer = {
 	FireAllClients: (self: any, ...any) -> (),
 	UFireClient: (self: any, player: Player, ...any) -> (),
 	UFireAllClients: (self: any, ...any) -> (),
-	SetParent: (self: any, new_parent: ReplicaServer) -> (),
+	SetParent: (self: any, new_parent: ReplicaServer<T>) -> (),
 	BindToInstance: (self: any, instance: Instance) -> (),
 	Replicate: (self: any) -> (),
 	DontReplicate: (self: any) -> (),
@@ -89,4 +89,11 @@ export type ReplicaServer = {
 	Destroy: (self: any) -> (),
 }
 
+export type Response<T> = {
+	Result: boolean,
+	Value: T?,
+	Message: string?,
+	Error: string?,
+}
+ 
 return module
