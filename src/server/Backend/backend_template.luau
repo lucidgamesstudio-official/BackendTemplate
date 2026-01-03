@@ -1,17 +1,21 @@
+export type Item = {
+	Quantity: number?,
+	Price: number?,
+	Name: string?,
+	Description: string?,
+	IsATool: boolean?,
+}
+
 export type PlayerDatas = {
 	Money: number,
-	Inventory: {{
-		ItemId: number?,
-		Quantity: number?,
-		Name: string?,
-		Description: string?,
-		IsATool: boolean?,
-	}},
-	NPC_interact: {{
-		NPC_Id: number?,
-		NPC_Name: string?,
-		NPC_Interactions: number?,
-	}},
+	Inventory: { [string]: { Item } },
+	NPC_interact: {
+		{
+			NPC_Id: number?,
+			NPC_Name: string?,
+			NPC_Interactions: number?
+		}
+	},
 }
 
 local Template: PlayerDatas = {
