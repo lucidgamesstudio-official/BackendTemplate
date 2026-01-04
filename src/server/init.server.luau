@@ -1,6 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local utility = require(ReplicatedStorage.Shared.utility)
 local backend_manager = require(script.Backend.backend_manager)
+require(script.Backend.backend_remotes)
 require(script.Items.init_items)
 backend_manager.Init()
 
